@@ -1,6 +1,7 @@
 ﻿using firstStore.UI.Data;
 using firstStore.UI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
@@ -23,18 +24,38 @@ namespace firstStore.UI.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddEdit()
+        public IActionResult AddEdit(int? id)
         {
-            return View();
+            var tipos = _ctx.TipoProdutos.ToList()
+                .Select(t=>new SelectListItem{ Value = t.Id.ToString(), Text = t.Nome });
+            ViewBag.Tipos = tipos;
+
+            var model = new Produto();
+            if (id != null)
+            {
+               model = _ctx.Produtos.Find(id);
+            }
+
+            return View(model);
         }
 
         [HttpPost]
         public IActionResult AddEdit(Produto model)
         {
-            _ctx.Produtos.Add(model);
-            _ctx.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _ctx.Produtos.Add(model);
+                _ctx.SaveChanges();
+
+                return RedirectToAction("Index");
+
+            }
+            var tipos = _ctx.TipoProdutos.ToList()
+                .Select(t => new SelectListItem { Value = t.Id.ToString(), Text = t.Nome });
+            ViewBag.Tipos = tipos;
+            return View(model);
+
             
-            return RedirectToAction("Index");
         }
     }
 }

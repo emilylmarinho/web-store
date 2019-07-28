@@ -18,6 +18,7 @@ namespace firstStore.UI.Data
         }
 
         public DbSet<Produto> Produtos { get; set; }
+        public DbSet<TipoProduto> TipoProdutos { get; set; }
 
     }
 }
