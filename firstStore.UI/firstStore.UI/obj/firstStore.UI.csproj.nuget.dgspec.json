@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\evyma\\Documents\\aspNET\\firstStore.UI\\firstStore.UI\\firstStore.UI.csproj": {}
+    "C:\\Users\\evyma\\Documents\\web-store\\firstStore.UI\\firstStore.UI\\firstStore.UI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\evyma\\Documents\\aspNET\\firstStore.UI\\firstStore.UI\\firstStore.UI.csproj": {
+    "C:\\Users\\evyma\\Documents\\web-store\\firstStore.UI\\firstStore.UI\\firstStore.UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\evyma\\Documents\\aspNET\\firstStore.UI\\firstStore.UI\\firstStore.UI.csproj",
+        "projectUniqueName": "C:\\Users\\evyma\\Documents\\web-store\\firstStore.UI\\firstStore.UI\\firstStore.UI.csproj",
         "projectName": "firstStore.UI",
-        "projectPath": "C:\\Users\\evyma\\Documents\\aspNET\\firstStore.UI\\firstStore.UI\\firstStore.UI.csproj",
+        "projectPath": "C:\\Users\\evyma\\Documents\\web-store\\firstStore.UI\\firstStore.UI\\firstStore.UI.csproj",
         "packagesPath": "C:\\Users\\evyma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\evyma\\Documents\\aspNET\\firstStore.UI\\firstStore.UI\\obj\\",
+        "outputPath": "C:\\Users\\evyma\\Documents\\web-store\\firstStore.UI\\firstStore.UI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -57,6 +57,10 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.2.3, )"
             }
           },
           "imports": [
