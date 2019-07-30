@@ -20,7 +20,8 @@
     <tbody>
      @foreach (var item in Model)
      {
-        <div><tr>
+        <div>
+        <tr id="item-@item.Id">
             <td>@item.Nome</td>
             <td>@item.Tipo.Nome</td>
             <td>@item.Valor</td>
@@ -29,12 +30,13 @@
                 <buton onclick="excluir('@item.Id', '@item.Nome')" class="btn btn-danger btn-sm">Excluir</buton>
             </td>
 
-        </tr></div>
+        </tr>
+        </div>
      }
     </tbody>
 </table>
 
-<div class="modal" tabindex="-1" role="dialog" id="del-modal">
+<div data-id="0" class="modal" tabindex="-1" role="dialog" id="del-modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -44,11 +46,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Tem certeza que deseja excluir o produto <span id="nome-produto"></span>?</p>
+                <p>Tem certeza que deseja excluir o produto <span id="nome-produto"></span>? </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Sim</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btn-confirm">Sim</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cancelar</button>
             </div>
         </div>
     </div>
@@ -59,10 +61,34 @@
 
         function excluir(id, nome)
         {
-            $('#del-modal').modal('show');
             $("#nome-produto").text(nome);
-
+            $('#del-modal').data('id', id).modal('show');
         }
+
+        var _url = '@Url.Action("Excluir")';
+
+        $("#btn-confirm").on("click", function excluirConfirma() {
+            var id = $('#del-modal').data('id');
+
+            //alert("ok - " + id);
+            $.ajax({
+                url: _url,
+                dataType: "json",
+                data: { "id": id },
+                type: "delete",
+                success: function () {
+                    toastr.success("Item excluído!", "web-store");
+                },
+                error: function () {
+                    toastr.error("Erro ao excluir", "web-store");
+                },
+                complete: function () {
+                    $('#del-modal').data('id', id).modal('hide');
+                    $("#item-" + id).remove();
+                }
+
+            });
+        });
 
     </script>
 }

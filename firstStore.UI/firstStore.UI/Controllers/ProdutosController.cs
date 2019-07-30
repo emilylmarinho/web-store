@@ -1,5 +1,6 @@
 ﻿using firstStore.UI.Data;
 using firstStore.UI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using System.Linq;
 
 namespace firstStore.UI.Controllers
 {
+    [Authorize]
     public class ProdutosController:Controller
     {
 
@@ -56,6 +58,20 @@ namespace firstStore.UI.Controllers
             return View(model);
 
             
+        }
+
+        [HttpDelete]
+        public IActionResult Excluir(int id)
+        {
+            var produto = _ctx.Produtos.Find(id);
+
+            if(produto == null)
+                return NotFound();
+
+            _ctx.Produtos.Remove(produto);
+            _ctx.SaveChanges();
+
+            return NoContent();
         }
     }
 }

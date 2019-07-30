@@ -54,3 +54,4 @@ C:\Users\evyma\Documents\web-store\firstStore.UI\firstStore.UI\obj\Debug\netcore
 C:\Users\evyma\Documents\web-store\firstStore.UI\firstStore.UI\obj\Debug\netcoreapp2.2\firstStore.UI.csproj.CopyComplete
 C:\Users\evyma\Documents\web-store\firstStore.UI\firstStore.UI\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
 C:\Users\evyma\Documents\web-store\firstStore.UI\firstStore.UI\obj\Debug\netcoreapp2.2\Razor\Views\Produtos\AddEdit.g.cshtml.cs
+C:\Users\evyma\Documents\web-store\firstStore.UI\firstStore.UI\obj\Debug\netcoreapp2.2\Razor\Views\Conta\Login.g.cshtml.cs

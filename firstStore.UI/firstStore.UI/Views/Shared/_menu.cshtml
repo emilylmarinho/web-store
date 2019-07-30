@@ -4,13 +4,36 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-action="Index" asp-controller="Produtos">Produtos</a>
             </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Olá @User.Identity.Name
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Perfil</a>
+                        <a class="dropdown-item" href="#">Editar senha</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-action="LogOut" asp-controller="Conta">Sair</a>
+                    </div>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Login" asp-controller="Conta">Login</a>
+                </li>
+
+            }
         </ul>
     </div>
 </nav>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using firstStore.UI.infra;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -14,6 +15,10 @@ namespace firstStore.UI
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(opt=> {
+                    opt.LoginPath = "/Conta/Login";
+                });
             services.AddMvc();
             //services.AddSingleton(); //instância unica
             services.AddScoped<Data.FirstStoreDataContext>(); //escopo por requisição/ciclo de vida da requisição
@@ -32,6 +37,8 @@ namespace firstStore.UI
             app.UseStaticFiles();
 
             app.UseNodeModules(env.ContentRootPath);
+
+            app.UseAuthentication();
 
             app.UseMvcWithDefaultRoute();
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using firstStore.UI.infra;
 using System.Threading.Tasks;
 
 namespace firstStore.UI.Data
@@ -15,7 +16,6 @@ namespace firstStore.UI.Data
 
             if (!ctx.Produtos.Any())
             {
-
 
                 var alimentacao = new TipoProduto() { Nome = "Alimentação" };
                 var bebidas = new TipoProduto() { Nome = "Bebidas" };
@@ -32,6 +32,16 @@ namespace firstStore.UI.Data
                     };
 
                 ctx.Produtos.AddRange(produtos);
+                ctx.SaveChanges();
+            }
+
+            if (!ctx.Usuarios.Any())
+            {
+                ctx.Usuarios.AddRange(new List<Usuario>
+                {
+                    new Usuario(){Nome="Emily Marinho", Email="emily.lm@outlook.com", Senha="teste123".Encrypt()},
+                    new Usuario(){Nome="Mario Silva", Email="teste@outlook.com", Senha="123".Encrypt()}
+                });
                 ctx.SaveChanges();
             }
         }
