@@ -46,6 +46,15 @@ namespace firstStore.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(model.Id != null)
+                {
+                    _ctx.Update(model);
+                    _ctx.SaveChanges();
+
+                    return RedirectToAction("Index");
+
+                }
+
                 _ctx.Produtos.Add(model);
                 _ctx.SaveChanges();
 

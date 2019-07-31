@@ -12,27 +12,27 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace firstStore.UI.Controllers
 {
-    public class ContaController:Controller
+    public class ContaController : Controller
     {
         private readonly FirstStoreDataContext _ctx;
         public ContaController(FirstStoreDataContext ctx)
         {
             _ctx = ctx;
         }
-        public IActionResult Login(string returnUrl) => View(new LoginVM { ReturnUrl=returnUrl });
+        public IActionResult Login(string returnUrl) => View(new LoginVM { ReturnUrl = returnUrl });
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM model)
         {
-            var usuario = _ctx.Usuarios.FirstOrDefault(u=> u.Email.ToLower() == model.Email.ToLower());
+            var usuario = _ctx.Usuarios.FirstOrDefault(u => u.Email.ToLower() == model.Email.ToLower());
 
             if (usuario == null)
                 ModelState.AddModelError("Email", "Email não localizado");
             else
             {
-                if(usuario.Senha != model.Senha.Encrypt())
+                if (usuario.Senha != model.Senha.Encrypt())
                     ModelState.AddModelError("Senha", "Senha Incorreta");
-                
+
             }
 
             if (ModelState.IsValid)
@@ -49,7 +49,7 @@ namespace firstStore.UI.Controllers
                         IsPersistent = model.Lembrar
                     }
                     );
-                if(!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                 {
                     return Redirect(model.ReturnUrl);
 
@@ -59,5 +59,13 @@ namespace firstStore.UI.Controllers
 
             return View();
         }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
+        }
+
+       
     }
 }

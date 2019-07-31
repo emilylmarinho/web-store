@@ -23,9 +23,6 @@ namespace firstStore.UI.Data
 
                 var produtos = new List<Produto>(){
                         new Produto(){Nome = "Picanha", Tipo = alimentacao, Valor = 40.00M},
-                        new Produto(){Nome = "Leite", Tipo = alimentacao, Valor = 5.50M},
-                        new Produto(){Nome = "Chocolate", Tipo = alimentacao, Valor = 8.00M},
-                        new Produto(){Nome = "Coca-cola", Tipo = bebidas, Valor = 6.50M},
                         new Produto(){Nome = "Relógio", Tipo = acessorio, Valor = 200.99M},
                         new Produto(){Nome = "Tenis", Tipo = acessorio, Valor = 250.00M},
                         new Produto(){Nome = "Água", Tipo = bebidas, Valor = 3.00M}
@@ -40,7 +37,8 @@ namespace firstStore.UI.Data
                 ctx.Usuarios.AddRange(new List<Usuario>
                 {
                     new Usuario(){Nome="Emily Marinho", Email="emily.lm@outlook.com", Senha="teste123".Encrypt()},
-                    new Usuario(){Nome="Mario Silva", Email="teste@outlook.com", Senha="123".Encrypt()}
+                    new Usuario(){Nome="Mario Silva", Email="teste@outlook.com", Senha="123".Encrypt()},
+                    new Usuario(){Nome="Fabiano Nalin", Email="fabiano.nalin@gmail.com", Senha="123456".Encrypt()}
                 });
                 ctx.SaveChanges();
             }
